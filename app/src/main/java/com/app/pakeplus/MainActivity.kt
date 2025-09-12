@@ -7,22 +7,22 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceError
-import android.webkit.WebResourceRequest
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import androidx.activity.enableEdgeToEdge
-// import android.view.Menu
-// import android.view.WindowInsets
-// import com.google.android.material.snackbar.Snackbar
-// import com.google.android.material.navigation.NavigationView
-// import androidx.navigation.findNavController
-// import androidx.navigation.ui.AppBarConfiguration
-// import androidx.navigation.ui.navigateUp
-// import androidx.navigation.ui.setupActionBarWithNavController
-// import androidx.navigation.ui.setupWithNavController
-// import androidx.drawerlayout.widget.DrawerLayout
-// import com.app.pakeplus.databinding.ActivityMainBinding
-import androidx.appcompat.app.AppCompatActivity
+导入 android.webkit.WebResourceRequest
+导入 android.webkit.WebView
+导入 android.webkit.WebViewClient
+导入 androidx.activity.enableEdgeToEdge
+// 导入 android.view.Menu
+// 导入 android.view.WindowInsets
+// 导入 com.google.android.material.snackbar.Snackbar
+// 导入 com.google.android.material.navigation.NavigationView
+// 导入 androidx.navigation.findNavController
+// 导入 androidx.navigation.ui.AppBarConfiguration
+// 导入 androidx.navigation.ui.navigateUp
+// 导入 androidx.navigation.ui.setupActionBarWithNavController
+// 导入 androidx.navigation.ui.setupWithNavController
+// 导入 androidx.drawerlayout.widget.DrawerLayout
+// 导入 com.app.pakeplus.databinding.ActivityMainBinding
+导入 androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -55,68 +55,68 @@ class MainActivity : AppCompatActivity() {
         webView.settings.apply {
             javaScriptEnabled = true       // 启用JS
             domStorageEnabled = true       // 启用DOM存储（Vue 需要）
-            allowFileAccess = true         // 允许文件访问
-            setSupportMultipleWindows(true)
+            允许文件访问 = 真         // 允许文件访问
+            setSupportMultipleWindows(真)
         }
 
         // webView.settings.userAgentString = ""
 
-        webView.settings.loadWithOverviewMode = true
+        webView.settings.loadWithOverviewMode = 真
         webView.settings.setSupportZoom(false)
 
-        // clear cache
-        webView.clearCache(true)
+        // 清除缓存
+        webView.clearCache(真)
 
-        // inject js
+        // 注入js
         webView.webViewClient = MyWebViewClient()
 
-        // get web load progress
+        // 获取网页加载进度
         webView.webChromeClient = MyChromeClient()
 
-        // Setup gesture detector
-        gestureDetector =
-            GestureDetectorCompat(this, object : GestureDetector.SimpleOnGestureListener() {
-                override fun onFling(
-                    e1: MotionEvent?,
-                    e2: MotionEvent,
-                    velocityX: Float,
-                    velocityY: Float
-                ): Boolean {
-                    if (e1 == null) return false
+        // 设置手势检测器
+        手势检测器 =
+            GestureDetectorCompat(这个, 对象 : GestureDetector.SimpleOnGestureListener() {
+                覆盖 乐趣 在滑动时(
+                    e1: 事件动作?
+                    e2: 按摩事件,
+                    速度X：浮点数，
+                    速度Y：浮点数
+                ): 布尔 {
+                    如果 (e1 == 无) 返回 假
 
-                    val diffX = e2.x - e1.x
+                    值 差X = e2.x - e1.x
                     val diffY = e2.y - e1.y
 
-                    // Only handle horizontal swipes
-                    if (Math.abs(diffX) > Math.abs(diffY)) {
-                        if (Math.abs(diffX) > 100 && Math.abs(velocityX) > 100) {
-                            if (diffX > 0) {
-                                // Swipe right - go back
-                                if (webView.canGoBack()) {
+                    // 仅处理水平滑动
+                    如果 (Math.abs(diffX) > Math.abs(diffY)) {
+                        如果 (Math.abs(diffX) > 100 && Math.abs(velocityX) > 100) {
+                            如果 (diffX > 0) {
+                                // 向右滑动 - 返回
+                                如果 (webView可以返回()) {
                                     webView.goBack()
-                                    return true
+                                    返回 真
                                 }
-                            } else {
-                                // Swipe left - go forward
-                                if (webView.canGoForward()) {
+                            } 否则 {
+                                // 向左滑动 - 向前
+                                如果 (webView可以向前导航()) {
                                     webView.goForward()
-                                    return true
+                                    返回 真
                                 }
                             }
                         }
                     }
-                    return false
+                    返回 假
                 }
             })
 
-        // Set touch listener for WebView
+        // 为WebView设置触摸监听器
         webView.setOnTouchListener { _, event ->
-            gestureDetector.onTouchEvent(event)
-            false
+            手势检测器.处理触摸事件(事件)
+            假
         }
 
           webView.loadUrl("http://www.mxcgm.top:9999/ai/gwen.html")
-        //webView.loadUrl("file:///android_asset/index.html")
+//        webView.loadUrl("file:///android_asset/index.html")
 
 //        binding = ActivityMainBinding.inflate(layoutInflater)
 //        setContentView(R.layout.single_main)
@@ -133,12 +133,12 @@ class MainActivity : AppCompatActivity() {
 //        val navView: NavigationView = binding.navView
 //        val navController = findNavController(R.id.nav_host_fragment_content_main)
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        // 将每个菜单ID作为一组ID传递，因为每个
+        // 菜单应被视为顶级目的地。
 //        appBarConfiguration = AppBarConfiguration(
 //            setOf(
-//                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
-//            ), drawerLayout
+//                R.id导航主页, R.id导航图库, R.id导航幻灯片
+//            ), 抽屉布局
 //        )
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 //        navView.setupWithNavController(navController)
@@ -168,7 +168,7 @@ class MainActivity : AppCompatActivity() {
     inner class MyWebViewClient : WebViewClient() {
 
         // vConsole debug
-        private var debug = true
+        private var debug = false
 
         @Deprecated("Deprecated in Java", ReplaceWith("false"))
         override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
